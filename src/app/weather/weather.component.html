@@ -1,0 +1,62 @@
+<div class="container">
+  <div class="row">
+    <div class="card" style="width:55rem; padding : 54px ;background-color:#17a2b8bf; margin-top:108px">
+
+      <div class="card-body">
+        <div class="col-md-12">
+          <h3 class="text-center my-4">Search for Weather:</h3>
+          <form [formGroup]="weatherSearchForm" (ngSubmit)="sendToAPIXU(weatherSearchForm.value)">
+
+            <div class="form-group">
+              <input class="form-control" type="text" id="weatherLocation" aria-describedby="weatherLocation"
+                      placeholder="Please input a Location" formControlName="location" />
+            </div>
+
+            <div class="text-center">
+              <button type="submit" class="btn btn-success btn-md">
+                Search for the weather
+              </button>
+            </div>
+
+          </form>
+        </div>
+
+        <div class="page-content page-container" id="page-content">
+          <div class="padding">
+            <div class="row container d-flex justify-content-center">
+              <div class="col-lg-8 grid-margin stretch-card">
+                <!--weather card-->
+                <div class="card card-weather">
+                  <div class="card-body">
+                    <div class="weather-date-location">
+
+                      <img src="{{weatherData?.current?.weather_icons}}" />
+
+                      <h3>{{today | date:"EEEE" }}</h3>
+                      <p class="text-gray"> <span class="weather-date">{{this.weatherData?.location.localtime}}</span>
+                        <span
+                          class="weather-location">{{weatherData?.location.name}},{{ this.weatherData?.location.country }},{{this.weatherData?.location.region }}.
+                        </span> </p>
+                    </div>
+                    <div class="weather-data d-flex">
+                      <div class="mr-auto">
+                        <h4 class="display-3">{{this.weatherData?.current.temperature}} <span class="symbol">°</span>C
+                        </h4>
+
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Map -->
+        <div #mapContainer id="map"></div>
+
+      </div>
+    </div>
+  </div>
